@@ -14,8 +14,8 @@ Copyright: 2012, AllStruck
 
 
 /* Include FreshBooks API */
-include_once "library/FreshBooks/Client.php";
-include_once "library/FreshBooks/Callback.php";
+require_once "library/FreshBooks/Client.php";
+require_once "library/FreshBooks/Callback.php";
 
 /* Connect to FreshBooks using API Key and Domain */
 $url = "https://acmetestingco.freshbooks.com/api/2.1/xml-in";
