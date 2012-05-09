@@ -14,22 +14,16 @@ Copyright: 2012, AllStruck
 
 
 /* Include FreshBooks API */
+	require_once "library/FreshLibPHP/Callback.php";
+	require_once "library/FreshLibPHP/Client.php";
 
 
 /* Connect to FreshBooks using API Key and Domain */
 $url = "https://acmetestingco.freshbooks.com/api/2.1/xml-in";
 $token = "82cbd66a5966fcc2cb6f6d636b9ff291";
 
-// Init FreshBooks_HttpClient
-if (!class_exists('FreshBooks_HttpClient')) {
-	//require_once "library/FreshBooks/Client.php";
-}
 //FreshBooks_HttpClient::init($url,$token);
 
-// Load FreshBooks callback API if not available
-if (/*!method_exists('FreshBooks_HttpClient', 'FreshBooks_CallBack')*/false) {
-	require_once "library/FreshBooks/Callback.php";
-}
 
 function frdo_create_freshbooks_webhook() {
 	// Create WebHook
