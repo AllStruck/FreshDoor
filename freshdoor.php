@@ -24,7 +24,7 @@ $token = "82cbd66a5966fcc2cb6f6d636b9ff291";
 if (!class_exists('FreshBooks_HttpClient')) {
 	//require_once "library/FreshBooks/Client.php";
 }
-FreshBooks_HttpClient::init($url,$token);
+//FreshBooks_HttpClient::init($url,$token);
 
 // Load FreshBooks callback API if not available
 if (/*!method_exists('FreshBooks_HttpClient', 'FreshBooks_CallBack')*/false) {
