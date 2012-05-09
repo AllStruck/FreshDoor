@@ -21,7 +21,7 @@ $url = "https://acmetestingco.freshbooks.com/api/2.1/xml-in";
 $token = "82cbd66a5966fcc2cb6f6d636b9ff291";
 
 // Init FreshBooks_HttpClient
-if (!class_exists(FreshBooks_HttpClient)) {
+if (!class_exists('FreshBooks_HttpClient')) {
 	require_once "library/FreshBooks/Client.php";
 }
 FreshBooks_HttpClient::init($url,$token);
