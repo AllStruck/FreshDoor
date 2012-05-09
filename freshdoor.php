@@ -27,7 +27,7 @@ if (!class_exists('FreshBooks_HttpClient')) {
 FreshBooks_HttpClient::init($url,$token);
 
 // Load FreshBooks callback API if not available
-if (//!method_exists('FreshBooks_HttpClient', 'FreshBooks_CallBack')) {
+if (/*!method_exists('FreshBooks_HttpClient', 'FreshBooks_CallBack')*/) {
 	require_once "library/FreshBooks/Callback.php";
 }
 
