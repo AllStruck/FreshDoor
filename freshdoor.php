@@ -22,7 +22,7 @@ Copyright: 2012, AllStruck
 $url = "https://acmetestingco.freshbooks.com/api/2.1/xml-in";
 $token = "82cbd66a5966fcc2cb6f6d636b9ff291";
 
-//FreshBooks_HttpClient::init($url,$token);
+FreshBooks_HttpClient::init($url,$token);
 
 
 function frdo_create_freshbooks_webhook() {
