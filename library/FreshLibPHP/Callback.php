@@ -16,8 +16,8 @@ include_once 'ElementAction/Interface.php';
 /**
  * Class representing task API 
  */
-if (!class_exists('FreshLibPHP_Callback')) :
-class FreshLibPHP_Callback extends FreshLibPHP_ElementAction implements FreshLibPHP_Element_Interface, FreshLibPHP_ElementAction_Interface {
+if (!class_exists('FreshBooks_Callback')) :
+class FreshBooks_Callback extends FreshBooks_ElementAction implements FreshBooks_Element_Interface, FreshBooks_ElementAction_Interface {
 
     protected $_elementName = "callback";
     public $callback_id = "";
@@ -171,7 +171,7 @@ class FreshLibPHP_Callback extends FreshLibPHP_ElementAction implements FreshLib
         $resultInfo['total'] = (string) $callbacks['total'];
 
         foreach ($callbacks->children() as $key => $currXML) {
-            $thisCallbacks = new FreshLibPHP_Callback();
+            $thisCallbacks = new FreshBooks_Callback();
             $thisCallbacks->_internalLoadXML($currXML);
             $rows[] = $thisCallbacks;
         }
