@@ -17,3 +17,5 @@ sitemap.xml.gz
 *.sublime-project
 
 *.sublime-workspace
+
+sftp-config.json
