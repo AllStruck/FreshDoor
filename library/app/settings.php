@@ -1,6 +1,7 @@
 <?php 
-/*	= FreshDoor =
- * - Settings Page
+/**
+ * FRESHDOOR
+ * Settings Page
  */
 class FreshDoorSettings extends FreshDoor
 {
@@ -32,7 +33,7 @@ class FreshDoorSettings extends FreshDoor
 				'sanitize_callback' => array(&$this, 'freshbooks_settings_user_sanitize'),
 				'page' => parent::pfix.'settings',
 				'section' => parent::pfix.'freshbooks_settings_section'),
-			parent::pfix.'freshbooks_settings_user_api_key' => array(
+			parent::pfix.'freshbooks_settings_api_key' => array(
 				'title' => 'FreshBooks API Key',
 				'callback' => array(&$this, 'freshbooks_settings_api_key_callback'),
 				'sanitize_callback' => array(&$this, 'freshbooks_settings_api_key_sanitize'),
@@ -41,10 +42,6 @@ class FreshDoorSettings extends FreshDoor
 
 		add_action( 'admin_menu', array(&$this, 'do_settings_menus') );
 		add_action( 'admin_init', array(&$this, 'do_settings'));
-	}
-
-	public function frdo_settings_page() {
-
 	}
 
 	public function do_settings() {
@@ -79,6 +76,18 @@ class FreshDoorSettings extends FreshDoor
 				    do_settings_sections( parent::pfix.'settings' );
 				?>
 		        <?php submit_button(); ?>
+		        <?php if (!empty($_GET['test'])) { 
+		        				?> <div class="error message updated"></p> <?php
+		        					if (parent::api_test() == 1) { 
+		        						echo 'API connected and at least one Item found.'; 
+		        					} else {
+		        						echo 'API could not connect or at least one Item not found.';
+		        					}
+		        					?></p></div> <p><a href="/wp-admin/options-general.php?page=frdo_settings">Hide Test</a></p> 
+		        <?php } else { ?>
+		        			        <p><a href="/wp-admin/options-general.php?page=frdo_settings&test=true">Show Test:</a></p>
+		        <?php } ?>
+
 		    </form>
 		</div>
 		<?php
@@ -93,13 +102,14 @@ class FreshDoorSettings extends FreshDoor
 	}
 	public function freshbooks_settings_api_key_callback() {
 		$name = parent::pfix.'freshbooks_settings_api_key';
-		$value = get_option( $name );
-		echo '<input name="'.$name.'" type="text"  value="'.$value.'" />';
+		$value = parent::decrypt(get_option( $name ), SECURE_AUTH_KEY);
+		echo '<input name="'.$name.'" type="password"  value="'.$value.'" />';
 	}
 	public function freshbooks_settings_user_sanitize($val) {
 		return $val; // Not validating
 	}
 	public function freshbooks_settings_api_key_sanitize($val) {
-		return $val; // Not validating
+		return parent::encrypt($val, SECURE_AUTH_KEY); // Return encrypted value to store in db.
 	}
+
 }
